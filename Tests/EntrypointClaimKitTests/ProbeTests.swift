@@ -18,6 +18,11 @@ let correctProbes: [String] = [
             + "`docker build -t db .`; `docker run db` runs `/entrypoint.sh postgres`, and `docker run db bash` runs "
             + "`/entrypoint.sh bash`.",
         pythonApp + "After `docker build -t api .`, `docker run --entrypoint python api -m pytest` runs `python -m pytest`.",
+    dockerfile("FROM python:3.12-slim AS base", "WORKDIR /app", "COPY . .", "CMD [\"python\", \"app.py\", \"--port\", \"80\"]",
+               "", "FROM base", "RUN apt-get update && apt-get install -y --no-install-recommends tini",
+               "ENTRYPOINT [\"tini\", \"--\"]", "CMD [\"python\", \"app.py\", \"--port\", \"80\"]")
+        + "Build it with `docker build -t api .`. The ENTRYPOINT empties the CMD inherited from the base stage, so the "
+        + "final stage sets it again: `docker run api` runs `tini -- python app.py --port 80`.",
         "Arguments passed to `docker run` after the image name replace CMD. With `--entrypoint`, Docker also clears CMD. "
             + "A shell form ENTRYPOINT ignores CMD and any arguments.",
         dockerfile("FROM nginx:1.27", "HEALTHCHECK CMD [\"curl\", \"-f\", \"http://localhost\"]", "ONBUILD CMD [\"x\"]",
@@ -63,6 +68,8 @@ let lineProbes: [(String, [EntrypointClaim.Line])] = [
         (dockerfile("FROM a", "ENTRYPOINT p", "CMD [\"c\"]"), [.shellEntrypointDropsCmd]),
         (dockerfile("FROM a", "ENTRYPOINT ['python', 'app.py']", "CMD [\"--x\"]"), [.brokenExecForm]),
         (dockerfile("FROM node:20", "ENTRYPOINT [\"tini\", \"--\"]", "CMD npm start"), []),
+        (dockerfile("FROM python:3.12-slim AS base", "CMD [\"python\", \"app.py\"]", "FROM base",
+                    "ENTRYPOINT [\"tini\", \"--\"]", "CMD [\"python\", \"app.py\"]"), []),
         (dockerfile("FROM a", "CMD [\"a\", 1]", "CMD ['b']"), [.notStringArray]),
         (dockerfile("FROM a", "ENTRYPOINT [\"p\"]", "CMD --port 80"), [.leadingFlag]),
         (dockerfile("FROM a", "CMD [\"a\"]", "CMD [\"b\"]"), [.severalCmd]),

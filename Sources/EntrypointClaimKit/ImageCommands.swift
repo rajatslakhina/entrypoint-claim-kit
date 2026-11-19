@@ -31,7 +31,8 @@ public struct ImageCommands: Sendable, Hashable {
     public internal(set) var stageCmdLines: [CommandInstruction] = []
     /// The final stage's own `ENTRYPOINT` lines, in order.
     public internal(set) var stageEntrypointLines: [CommandInstruction] = []
-    /// A `CMD` the final stage inherited from an earlier stage and its `ENTRYPOINT` then emptied.
+    /// A `CMD` the final stage inherited from an earlier stage and its `ENTRYPOINT` then emptied, unless a later
+    /// `CMD` in the stage set one again.
     public internal(set) var clearedCmd: [String]?
     /// `CMD`, `ENTRYPOINT` and `SHELL` lines anywhere in the Dockerfile on which the build stops.
     public internal(set) var stoppingLines: [CommandInstruction] = []
@@ -102,6 +103,8 @@ public struct ImageCommands: Sendable, Hashable {
             cmd = .known(line.words(shell: shell))
             cmdLine = line
             cmdSetInStage = true
+            // A CMD after the ENTRYPOINT sets again what the ENTRYPOINT emptied.
+            clearedCmd = nil
             stageCmdLines.append(line)
         case "ENTRYPOINT":
             entrypoint = .known(line.words(shell: shell))

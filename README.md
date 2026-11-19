@@ -98,7 +98,7 @@ above it. Lines are read only from the last one, the answer's final version.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/rajatslakhina/entrypoint-claim-kit.git", from: "1.0.0")
+    .package(url: "https://github.com/rajatslakhina/entrypoint-claim-kit.git", from: "1.0.1")
 ]
 ```
 
@@ -188,9 +188,9 @@ conversation and the model on its own. The output above is the real output, also
 ![tests](Screenshots/tests.svg)
 
 - `swift build --build-tests`: 0 warnings, 0 errors (Swift 6.4.2, language mode 6).
-- `swift test --enable-code-coverage --no-parallel`: **49 tests in 10 suites**, 291 parameterized cases, all
+- `swift test --enable-code-coverage --no-parallel`: **49 tests in 10 suites**, 294 parameterized cases, all
   passing.
-- `llvm-cov report`: **100.00% of lines (1350) and functions (266)** on every one of the 19 library files;
+- `llvm-cov report`: **100.00% of lines (1354) and functions (266)** on every one of the 19 library files;
   regions 98.43% (878/892). See `Screenshots/coverage.txt`.
 - `swiftlint lint --strict`: 0 violations in 22 files, with the `.swiftlint.yml` in this repository (tool-verified).
 - Parity: 39 Dockerfiles. The 37 that build match `docker inspect`, and their 56 runs match `docker create`. The 2
@@ -216,6 +216,13 @@ conversation and the model on its own. The output above is the real output, also
   guess where the image is.
 - `$VAR` inside `CMD`/`ENTRYPOINT` is DockerfileClaimKit's job (`execFormNoShell`, stage `ARG`s), so it is not
   repeated here.
+
+## Versions
+
+- **1.0.1**: a final stage that sets `CMD` again after its `ENTRYPOINT` no longer gets the "empties the
+  inherited CMD" caution. A sentence that only mentions a "final stage" is no longer read as "only the last CMD
+  counts". Both were found when the series' shared demo ran a correct `tini` answer through 1.0.0.
+- **1.0.0**: first release.
 
 ## Part of a series
 

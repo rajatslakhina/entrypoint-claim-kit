@@ -54,6 +54,9 @@ struct ModelTests {
         #expect(config.clearedCmd == ["node", "a.js"])
         #expect(config.cmd == .known([]))
         #expect(image("FROM node", "ENTRYPOINT [\"tini\"]").clearedCmd == nil)
+        let setAgain = image("FROM node AS base", "CMD [\"a\"]", "FROM base", "ENTRYPOINT [\"tini\", \"--\"]", "CMD [\"b\"]")
+        #expect(setAgain.clearedCmd == nil)
+        #expect(setAgain.cmd == .known(["b"]))
     }
 
     @Test("What the daemon executes")

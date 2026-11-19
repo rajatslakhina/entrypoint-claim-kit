@@ -16,6 +16,7 @@ struct ReaderTests {
         ("With `--entrypoint bash`, the arguments you give are passed to bash and CMD is gone.", [.overrideClearsCmd]),
         ("With `--entrypoint`, the image's CMD is still passed to the new program.", [.overrideKeepsCmd]),
         ("If you have multiple CMD lines, only the last one is executed.", [.lastCmdCounts]),
+        ("The ENTRYPOINT empties the CMD, so the final stage sets it again and `docker run api` runs the app.", []),
         ("In the exec form of CMD, single quotes fail and double quotes work.", []),
         ("In shell-form CMD, single quotes work fine.", []),
         ("Single quotes, in the JSON form of CMD, are a problem.", []),

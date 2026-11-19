@@ -42,7 +42,9 @@ enum StatementReader {
     static func cmdLines(_ text: String, hasCmd: Bool) -> [Statement] {
         guard hasCmd else { return [] }
         let last = Words.containsAny(text, ["last", "final", "only"])
-        if last, Words.containsAny(text, Lexicon.effectWords) { return [.lastCmdCounts] }
+        if Words.containsAny(text, Lexicon.lastCmd), Words.containsAny(text, Lexicon.effectWords) {
+            return [.lastCmdCounts]
+        }
         if !last, Words.containsAny(text, Lexicon.everyCmd), Words.containsAny(text, Lexicon.runVerbs) {
             return [.everyCmdRuns]
         }
@@ -166,6 +168,8 @@ enum Lexicon {
                                "forwarded", "still works"]
     static let effectWords = ["takes effect", "wins", "is used", "counts", "applies", "is the one", "overrides",
                               "is honoured", "is honored", "is applied", "is executed", "runs", "is run"]
+    static let lastCmd = ["last cmd", "final cmd", "last one", "only the last", "last instruction",
+                          "last such instruction"]
     static let everyCmd = ["each cmd", "every cmd", "all cmd", "all the cmd", "multiple cmd", "several cmd",
                            "both cmd"]
     static let runVerbs = ["run", "runs", "execute", "executes", "executed", "in order", "in sequence",
