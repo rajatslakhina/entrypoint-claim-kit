@@ -203,8 +203,13 @@ conversation and the model on its own. The output above is the real output, also
 
 - **The process is modelled; the program is not.** What an entrypoint script does with `"$@"`, whether a shell
   forwards signals, and which process ends up as PID 1 are not judged. On this Mac's oracle, `dash` (Ubuntu's
-  `/bin/sh`) kept the shell as PID 1 for `CMD node server.js`, while `bash` replaced itself with the command.
+  `/bin/sh`) kept the shell as PID 1 for a one-command shell-form `CMD`, while `bash` replaced itself with the
+  command.
   The answer rarely says which shell the base image has, so PID 1 and signal claims are left unread.
+- **Wrappers are recognised by shape.** An exec-form `ENTRYPOINT` ending in `--`, an init named `tini`,
+  `tini-static`, `dumb-init` or `catatonit`, or a lone script named `*.sh` or like an entrypoint runs the command it
+  is handed. A lone extensionless wrapper such as s6-overlay's `["/init"]` looks the same as the app's own binary
+  (`["/app/server"]`), so "`docker run app bash` starts `bash`" under it is still called wrong.
 - **A base image's own `ENTRYPOINT`, `CMD` and `SHELL` are unknown.** Runs on a base the Dockerfile does not
   override are checked only for the part the Dockerfile settles.
 - **Only the classic builder was run** (no buildx here). BuildKit's dispatch code was read, and it matches on
