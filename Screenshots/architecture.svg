@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="470" viewBox="0 0 1180 470">
+<rect width="1180" height="470" rx="12" fill="#0b1120"/>
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#64748b"/></marker></defs>
+<text x="590.0" y="34" fill="#e2e8f0" font-family="Helvetica, Arial, sans-serif" font-size="17" text-anchor="middle" font-weight="bold">EntrypointClaimKit:&#160;what&#160;an&#160;answer&#160;says&#160;a&#160;container&#160;runs,&#160;checked&#160;with&#160;Docker's&#160;own&#160;rules</text>
+<rect x="30" y="60" width="250" height="120" rx="10" fill="#111827" stroke="#93c5fd" stroke-width="2"/>
+<text x="155.0" y="82" fill="#93c5fd" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Answer&#160;+&#160;question</text>
+<text x="42" y="104" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">prose&#160;sentences</text>
+<text x="42" y="121" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">inline&#160;`docker&#160;run&#160;...`</text>
+<text x="42" y="138" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">```dockerfile&#160;blocks</text>
+<text x="42" y="155" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">docker&#160;build&#160;-t&#160;&lt;tag&gt;</text>
+<rect x="330" y="60" width="300" height="120" rx="10" fill="#111827" stroke="#a5b4fc" stroke-width="2"/>
+<text x="480.0" y="82" fill="#a5b4fc" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">EntrypointClaimReader</text>
+<text x="342" y="104" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">RunClaimReader:&#160;run&#160;+&#160;claimed&#160;words</text>
+<text x="342" y="121" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">StatementReader:&#160;14&#160;statements</text>
+<text x="342" y="138" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">LineChecks:&#160;8&#160;line&#160;issues</text>
+<text x="342" y="155" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">Tags:&#160;docker&#160;build&#160;-t&#160;/&#160;--tag</text>
+<rect x="680" y="60" width="220" height="120" rx="10" fill="#111827" stroke="#c4b5fd" stroke-width="2"/>
+<text x="790.0" y="82" fill="#c4b5fd" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">EntrypointClaim</text>
+<text x="692" y="104" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">.runs(DockerRun,&#160;claimed)</text>
+<text x="692" y="121" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">.statement(Statement)</text>
+<text x="692" y="138" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">.line(Line,&#160;n)</text>
+<text x="692" y="155" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">image:&#160;ImageCommands?</text>
+<rect x="950" y="60" width="200" height="120" rx="10" fill="#111827" stroke="#f0abfc" stroke-width="2"/>
+<text x="1050.0" y="82" fill="#f0abfc" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">EntrypointLedger</text>
+<text x="962" y="104" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">actor:&#160;one&#160;per&#160;chat</text>
+<text x="962" y="121" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">last&#160;Dockerfile&#160;+&#160;tags</text>
+<text x="962" y="138" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">repeats&#160;marked</text>
+<text x="962" y="155" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">statistics</text>
+<rect x="30" y="240" width="250" height="150" rx="10" fill="#111827" stroke="#5eead4" stroke-width="2"/>
+<text x="155.0" y="262" fill="#5eead4" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">DockerfileClaimKit</text>
+<text x="42" y="284" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">Dockerfile&#160;parser&#160;(1.0.0)</text>
+<text x="42" y="301" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">continuation&#160;lines</text>
+<text x="42" y="318" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">comments,&#160;#&#160;escape=</text>
+<text x="42" y="335" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">heredocs&#160;skipped</text>
+<text x="42" y="352" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">instructions&#160;+&#160;line&#160;numbers</text>
+<rect x="330" y="240" width="300" height="150" rx="10" fill="#111827" stroke="#86efac" stroke-width="2"/>
+<text x="480.0" y="262" fill="#86efac" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">ImageCommands</text>
+<text x="342" y="284" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">exec&#160;vs&#160;shell&#160;form&#160;(strict&#160;JSON)</text>
+<text x="342" y="301" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">SHELL,&#160;stages,&#160;FROM&#160;&lt;stage&gt;</text>
+<text x="342" y="318" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">ENTRYPOINT&#160;empties&#160;inherited&#160;CMD</text>
+<text x="342" y="335" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">Entrypoint&#160;/&#160;Cmd:&#160;known&#160;|&#160;fromBase</text>
+<text x="342" y="352" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">launch(DockerRun)&#160;-&gt;&#160;Launch</text>
+<rect x="680" y="240" width="220" height="150" rx="10" fill="#111827" stroke="#fcd34d" stroke-width="2"/>
+<text x="790.0" y="262" fill="#fcd34d" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">EntrypointEvaluator</text>
+<text x="692" y="284" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">exact&#160;match</text>
+<text x="692" y="301" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">script&#160;of&#160;sh&#160;-c</text>
+<text x="692" y="318" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">9&#160;misreadings&#160;-&gt;&#160;slip</text>
+<text x="692" y="335" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">base&#160;ENTRYPOINT:&#160;quiet</text>
+<text x="692" y="352" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">else&#160;unchecked</text>
+<rect x="950" y="240" width="200" height="150" rx="10" fill="#111827" stroke="#fca5a5" stroke-width="2"/>
+<text x="1050.0" y="262" fill="#fca5a5" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">EntrypointReport</text>
+<text x="962" y="284" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">verified&#160;/&#160;unchecked</text>
+<text x="962" y="301" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">caution&#160;/&#160;wrong</text>
+<text x="962" y="318" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">note&#160;+&#160;feedback</text>
+<text x="962" y="335" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="start" font-weight="normal">one&#160;mistake,&#160;one&#160;finding</text>
+<rect x="330" y="410" width="300" height="44" rx="10" fill="#111827" stroke="#fdba74" stroke-width="2"/>
+<text x="480.0" y="432" fill="#fdba74" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">DockerRun</text>
+<text x="480" y="446" fill="#cbd5e1" font-family="Menlo, Monaco, monospace" font-size="11" text-anchor="middle" font-weight="normal">docker&#160;run&#160;[options]&#160;IMAGE&#160;[args]&#160;&#160;--entrypoint</text>
+<line x1="280" y1="120" x2="330" y2="120" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="630" y1="120" x2="680" y2="120" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="900" y1="120" x2="950" y2="120" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="155" y1="180" x2="155" y2="240" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="280" y1="315" x2="330" y2="315" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="790" y1="180" x2="790" y2="240" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="630" y1="315" x2="680" y2="315" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="900" y1="315" x2="950" y2="315" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="1050" y1="240" x2="1050" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="480" y1="410" x2="480" y2="390" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+</svg>

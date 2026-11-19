@@ -1,0 +1,59 @@
+EntrypointClaimKit demo: what an answer says a container runs, checked with Docker's own rules
+
+[1] A correct answer about ENTRYPOINT and CMD
+    answer: verified (3 claims checked, 3 hold)
+      ok `docker run api` runs `python app.py --port 80`, as the answer says.
+      ok `docker run api --port 8080` runs `python app.py --port 8080`, as the answer says.
+      ok The statement about `docker run` arguments holds.
+
+[2] Passing a flag: arguments replace CMD, they are not added to it
+    answer: wrong (1 claim checked, 0 hold, 1 wrong)
+      XX `docker run api --debug` does not run `python app.py --port 80 --debug`: it runs `python app.py --debug` (arguments after the image replace CMD; they are not added to it).
+    rewrite: verified (1 claim checked, 1 hold)
+      ok `docker run api --port 80 --debug` runs `python app.py --port 80 --debug`, as the answer says.
+
+[3] Getting a shell: the ENTRYPOINT stays unless --entrypoint replaces it
+    answer: wrong (1 claim checked, 0 hold, 1 wrong)
+      XX `docker run api bash` does not run `bash`: it runs `python app.py bash` (arguments after the image follow the ENTRYPOINT; only --entrypoint replaces it).
+    rewrite: verified (2 claims checked, 2 hold)
+      ok `docker run --entrypoint bash api` runs `bash`, as the answer says.
+      ok The statement about `--entrypoint` holds.
+
+[4] A shell-form ENTRYPOINT never sees CMD (one mistake, one finding)
+    answer: wrong (1 claim checked, 0 hold, 1 wrong)
+      XX `docker run web` does not run `node server.js --port 3000`: it runs `/bin/sh -c "node server.js" --port 3000` (a shell-form ENTRYPOINT runs `sh -c` with its text, which never uses CMD or the run's arguments).
+    Dockerfile alone: wrong (1 claim checked, 0 hold, 1 wrong)
+      XX `ENTRYPOINT node server.js` (line 4) is a shell-form ENTRYPOINT, so the CMD never reaches the program: the container runs `/bin/sh -c "node server.js" --port 3000`. Use `ENTRYPOINT ["node", "server.js"]`.
+
+[5] Single quotes are not JSON: the exec form silently becomes the shell form
+    answer: wrong (2 claims checked, 0 hold, 2 wrong)
+      XX Starting the container does not run `node server.js`: it runs `/bin/sh -c "['node', 'server.js']"` after the base image's ENTRYPOINT, if any (the array is not JSON, because of single quotes or a trailing comma, so Docker runs it as shell-form text).
+      XX The exec form is JSON and needs double quotes: with single quotes Docker runs the text through the shell, which fails to find a command named like the array.
+
+[6] A stage built on another: ENTRYPOINT empties the CMD it inherited
+    answer: wrong (2 claims checked, 0 hold, 2 wrong)
+      XX Setting ENTRYPOINT empties a CMD inherited from the base image; set CMD again in the same stage.
+      XX `docker run web` does not run `tini -- node server.js`: it runs `tini --` (an ENTRYPOINT empties the CMD the stage inherited unless the stage sets CMD itself).
+
+[7] A base image the Dockerfile does not show: quiet when the Dockerfile agrees
+    answer: verified (1 claim checked, 1 hold)
+      ok `docker run web` runs `node server.js` after the base image's ENTRYPOINT, if any, as the answer says.
+    with an argument: wrong (1 claim checked, 0 hold, 1 wrong)
+      XX `docker run web --inspect` does not run `node server.js --inspect`: it runs `--inspect` after the base image's ENTRYPOINT, if any (arguments after the image replace CMD; they are not added to it).
+
+[8] A conversation: a repeat is marked, another topic stays quiet
+    turn 1: wrong (1 claim checked, 0 hold, 1 wrong)
+      XX `docker run api --debug` does not run `python app.py --port 80 --debug`: it runs `python app.py --debug` (arguments after the image replace CMD; they are not added to it).
+    turn 2: wrong (1 claim checked, 0 hold, 1 wrong, 1 repeated)
+      XX `docker run api --debug` does not run `python app.py --port 80 --debug`: it runs `python app.py --debug` (arguments after the image replace CMD; they are not added to it). [repeated]
+    turn 3: noClaims (no claims about what a container runs)
+    turn 4: verified (1 claim checked, 1 hold)
+      ok `docker run api --port 80 --debug` runs `python app.py --port 80 --debug`, as the answer says.
+    ledger: 4 reviews, 3 claims, 2 flagged, 1 repeated
+
+[9] The model on its own: what each run executes
+    docker run api  ->  python app.py --port 80
+    docker run api --port 9000  ->  python app.py --port 9000
+    docker run --entrypoint sh api -c 'ls /app'  ->  sh -c "ls /app"
+    docker run -it --rm -p 8080:80 api --debug  ->  python app.py --debug
+    docker run --entrypoint "" api  ->  refused: no command specified
